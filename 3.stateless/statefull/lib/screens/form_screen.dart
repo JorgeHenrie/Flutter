@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:statefull/components/task.dart';
+import 'package:statefull/data/taks_dao.dart';
 import 'package:statefull/data/task_inherited.dart';
 
 class FormScreen extends StatefulWidget {
@@ -147,10 +149,11 @@ class _FormScreenState extends State<FormScreen> {
                         //print(nameController.text);
                         //print(int.parse(dificultyController.text));
                         //print(imageController.text);
-                        TaskInherited.of(widget.taskContext).newTask(
-                            nameController.text,
-                            imageController.text,
-                            int.parse(dificultyController.text));
+                        TaksDao().save(Task(
+                          nameController.text,
+                          imageController.text,
+                          int.parse(dificultyController.text),
+                        ));
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Criando uma nova tarefa!'),
